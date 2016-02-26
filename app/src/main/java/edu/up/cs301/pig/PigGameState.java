@@ -18,7 +18,7 @@ public class PigGameState extends GameState {
         player0Score = 0;
         player1Score = 0;
         runningTotal = 0;
-        currentValue = 1;
+        currentValue = 0;
     }
 
     public PigGameState(PigGameState state){
@@ -44,18 +44,18 @@ public class PigGameState extends GameState {
     }
 
     public void setPlayer0Score(int newScore){
-        playerId = newScore;
+        player0Score = newScore;
     }
 
     public void setPlayer1Score(int newScore){
-        playerId = newScore;
+        player1Score = newScore;
     }
 
     public void setRunningTotal(int newTotal){
-        playerId = newTotal;
+        runningTotal = newTotal;
     }
 
     public void setCurrentValue(int newValue){
-        playerId = newValue;
+        currentValue = newValue;
     }
 }
