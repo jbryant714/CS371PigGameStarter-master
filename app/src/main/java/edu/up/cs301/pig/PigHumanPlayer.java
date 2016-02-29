@@ -89,7 +89,6 @@ public class PigHumanPlayer extends GameHumanPlayer implements OnClickListener {
                 case 6:
                     dieImageButton.setImageResource(R.drawable.face6);
                     break;
-
             }
         }
         else{

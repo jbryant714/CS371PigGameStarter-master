@@ -29,13 +29,35 @@ public class PigComputerPlayer extends GameComputerPlayer {
     @Override
     protected void receiveInfo(GameInfo info) {
         if( info instanceof PigGameState) {
-            if(this.playerNum == ((PigGameState) info).getPlayerId()) {
-                double move = Math.random();
-                if (move < .5) {
+            if(this.playerNum == ((PigGameState)info).getPlayerId()) {
+
+                //if AI can win with the running total and its previous point accumulation
+                if(((PigGameState)info).getRunningTotal()+((PigGameState)info).getPlayer1Score() >= 50)
+                {
                     this.game.sendAction(new PigHoldAction(this));
-                } else {
-                    this.game.sendAction(new PigRollAction(this));
                 }
+                //if AI is more than 12 points behind the human player with both its current and running values
+                else if(((PigGameState)info).getPlayer0Score() - (((PigGameState)info).getPlayer1Score()+((PigGameState)info).getRunningTotal()) > 12)
+                {
+                    this.game.sendAction(new PigRollAction);
+                }
+                //if current running total value is greater than 12, take the value
+                else if(((PigGameState)info).getRunningTotal() > 12)
+                {
+                 this.game.sendAction(new PigHoldAction(this));
+                }
+                else
+                {
+                    this.game.sendAction(new PigRollAction);
+                }
+
+
+//                double move = Math.random();
+//                if (move < .5) {
+//                    this.game.sendAction(new PigHoldAction(this));
+//                } else {
+//                    this.game.sendAction(new PigRollAction(this));
+//                }
             }
         }
     }//receiveInfo
